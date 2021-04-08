@@ -67,3 +67,30 @@ values(
 	json_object( "examination","oo 검진") 
 );
 
+-- 유저 테이블 생성
+create table users (
+	id int primary key auto_increment, 
+    profile_image varchar(255), -- 프로필 이미지 주소
+    email varchar(50) unique, -- 이메일
+    nickname varchar(50) unique, -- 닉네임
+    gender varchar(1) default "F", -- 성별 F or M 
+    baby_birthday varchar(20), -- 아기 생일
+    parent_age int(2), -- 부모 나이
+    role tinyint default 0, -- 관리자 계정 여부 -> 0 : 일반회원, 1: 관리자
+    created_at datetime default now(), -- 생성일
+    updated_at datetime, -- 수정일
+    deleted_at datetime, -- 삭제일
+    is_deleted tinyint default 0 -- 삭제여부
+    );
+    
+select * from users;
+
+-- 즐겨찾기
+create table bookmarks (
+	id int primary key auto_increment,
+	user_id int, -- 유저
+    space_id int, -- 장소
+    state tinyint default 0 -- 북마크 상태 -> 0:북마크 x / 1:북마크 o
+);
+
+
